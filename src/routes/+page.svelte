@@ -4,7 +4,7 @@ Quick Links:
 
 <a href="/login">Login</a>
 <a href="/signup">Signup</a>
-<a href="/password>Forgot Password</a>
+<a href="/forgot>Forgot Password</a>
 <a href="/reset">Reset Password</a>
 <br>
 <a href="/admin">Admin</a>

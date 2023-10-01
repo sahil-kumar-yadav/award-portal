@@ -1,1 +1,1 @@
-// list of awards
+// awards committee homepage
