@@ -12,7 +12,7 @@
 
 <!-- card container to which consist of the form(use for shadow border) -->
 <Card class="mx-auto my-auto w-auto">
-heading of the form
+<!-- heading of the form -->
   <h2 class="text-4xl font-light dark:text-white text-center">
     Add New Reviewer
   </h2>
@@ -20,7 +20,7 @@ heading of the form
  <!-- this div consist lable(name) icon and input -->
   <div class="mb-6">
     <Label for="input-group-1" class="block mb-2 mt-6 text-lg">Name *</Label>
-    <Input id="email" type="email" placeholder="Full Name">
+    <Input id="name" type="text" placeholder="Full Name">
       <UserCircleOutline
         slot="left"
         class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -44,7 +44,7 @@ heading of the form
     <Label for="input-group-1" class="block mb-2 text-lg"
       >Affiliation (Institute or Organization Name / Section Name) *</Label
     >
-    <Input id="email" type="email" placeholder="Institute/University name">
+    <Input id="name_inst" type="text" placeholder="Institute/University name">
       <!-- <HomeSolid
         slot="left"
         class="w-5 h-5 text-gray-500 dark:text-gray-400"
