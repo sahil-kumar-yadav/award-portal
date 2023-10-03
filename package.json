@@ -1,25 +1,27 @@
 {
-	"name": "award-portal",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.20.4",
-		"svelte": "^4.0.5",
-		"vite": "^4.4.2"
-	},
-	"type": "module",
-	"dependencies": {
-		"@popperjs/core": "^2.11.8",
-		"@prisma/client": "^5.3.1",
-		"flowbite": "^1.8.1",
-		"flowbite-svelte": "^0.44.18",
-		"prisma": "^5.3.1",
-		"tailwind-merge": "^1.14.0"
-	}
+  "name": "award-portal",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.20.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-load-config": "^4.0.1",
+    "prisma": "^5.4.2",
+    "svelte": "^4.0.5",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.4.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "flowbite": "^1.8.1",
+    "flowbite-svelte": "^0.44.18"
+  }
 }
