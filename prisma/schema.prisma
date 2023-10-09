@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://awardsadmin:123456@localhost:3306/awards2"
+  url      = "mysql://awardsadmin:123456@localhost:3306/awards"
 }
 
 model User {
@@ -20,9 +20,9 @@ model User {
   Affiliation  String?
   committees   AwardCommittee[] @relation(name: "Member")
   chairs       AwardCommittee[] @relation(name: "Chair")
-  admins       Admin[]          // One-to-many relationship with admins
-  reviewers    Reviewer[]       // One-to-many relationship with reviewers
-  applications Application[]    // One-to-many relationship with applications
+  admins       Admin[]         // One-to-many relationship with admins
+  reviewers    Reviewer[]      // One-to-many relationship with reviewers
+  applications Application[]   // One-to-many relationship with applications
 }
 
 model Admin {
@@ -35,20 +35,20 @@ model AwardCommittee {
   id      Int     @id @default(autoincrement())
   name    String
   members User[]  @relation(name: "Member")
-  awards  Award[] // One-to-many relationship with awards
+  awards  Award[]              // One-to-many relationship with awards
   chair   User    @relation(name: "Chair", fields: [chairId], references: [id])
   chairId Int
 }
 
 model Award {
-  id           Int                @id @default(autoincrement())
-  name         String
-  committeeId  Int
-  committee    AwardCommittee     @relation(fields: [committeeId], references: [id])
-  fields       AwardField[]
-  reviewers    Reviewer[] // Many-to-many relationship with users for reviewers
-  rubrics      Rubric[] // One-to-many relationship with rubrics
-  applications Application[] // One-to-many relationship with applications
+  id            Int            @id @default(autoincrement())
+  name          String
+  committeeId   Int
+  committee     AwardCommittee @relation(fields: [committeeId], references: [id])
+  fields        AwardField[]
+  reviewers     Reviewer[]     // Many-to-many relationship with users for reviewers
+  reviewmetrics ReviewMetric[] // One-to-many relationship with reviewmetrics
+  applications  Application[]  // One-to-many relationship with applications
 }
 
 model Application {
@@ -73,48 +73,48 @@ model AwardField {
 }
 
 model Choice {
-  id          Int         @id @default(autoincrement())
-  content     String
-  field       AwardField  @relation(fields: [fieldId], references: [id])
-  fieldId     Int
+  id      Int        @id @default(autoincrement())
+  content String
+  field   AwardField @relation(fields: [fieldId], references: [id])
+  fieldId Int
 }
 
 model ApplicantResponse {
-  id            Int              @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   content       String
-  application   Application      @relation(fields: [applicationId], references: [id])
+  application   Application @relation(fields: [applicationId], references: [id])
   applicationId Int
-  field         AwardField @relation(fields: [fieldId], references: [id])
+  field         AwardField  @relation(fields: [fieldId], references: [id])
   fieldId       Int
 }
 
 model Reviewer {
-  id     Int     @id @default(autoincrement())
-  userId Int
-  user   User    @relation(fields: [userId], references: [id])
-  awards Award[] // Many-to-many relationship with awards
-  scores Score[] // One-to-many relationship with scores
+  id           Int           @id @default(autoincrement())
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id])
+  awards       Award[]         // Many-to-many relationship with awards
+  scores       Score[]         // One-to-many relationship with scores
   applications Application[] @relation(name: "ExtraReviewer")
 }
 
 model Score {
-  id            Int         @id @default(autoincrement())
-  value         Float
-  rubric        Rubric      @relation(fields: [rubricId], references: [id])
-  rubricId      Int
-  reviewer      Reviewer    @relation(fields: [reviewerId], references: [id])
-  reviewerId    Int
-  application   Application @relation(fields: [applicationId], references: [id])
-  applicationId Int
+  id             Int          @id @default(autoincrement())
+  value          Float
+  reviewmetric   ReviewMetric @relation(fields: [reviewmetricId], references: [id])
+  reviewmetricId Int
+  reviewer       Reviewer     @relation(fields: [reviewerId], references: [id])
+  reviewerId     Int
+  application    Application  @relation(fields: [applicationId], references: [id])
+  applicationId  Int
 
-  @@unique([reviewerId, applicationId, rubricId])
+  @@unique([reviewerId, applicationId, reviewmetricId])
 }
 
-model Rubric {
+model ReviewMetric {
   id      Int     @id @default(autoincrement())
   name    String
-  max     Float     // Maximum score for this rubric
-  scores  Score[]   // One-to-many relationship with scores
+  max     Float                // Maximum score for this reviewmetric
+  scores  Score[]              // One-to-many relationship with scores
   award   Award   @relation(fields: [awardId], references: [id])
   awardId Int
 }
