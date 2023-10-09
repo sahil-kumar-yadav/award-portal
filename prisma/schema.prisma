@@ -1,128 +1,74 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = "mysql://awardsadmin:123456@localhost:3306/awards"
+    provider = "mysql"
+    url      = "mysql://award-portal-dev:704ix3yF&@ls-141ff2a6703085fbd1b645a016f671471e83ed44.c4132jfwzbkh.ap-south-1.rds.amazonaws.com:3306/award-portal-dev"
 }
 
-model User {
-  id           Int              @id @default(autoincrement())
-  name         String
-  email        String           @unique
-  Phone        String?
-  password     String
-  isActive     Boolean          @default(false)
-  ieeeMemNo    String?
-  ieeeMemLevel String?
-  Instutue     String?
-  Affiliation  String?
-  committees   AwardCommittee[] @relation(name: "Member")
-  chairs       AwardCommittee[] @relation(name: "Chair")
-  admins       Admin[]         // One-to-many relationship with admins
-  reviewers    Reviewer[]      // One-to-many relationship with reviewers
-  applications Application[]   // One-to-many relationship with applications
-}
-
-model Admin {
-  id     Int  @id @default(autoincrement())
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
-}
-
-model AwardCommittee {
-  id      Int     @id @default(autoincrement())
-  name    String
-  members User[]  @relation(name: "Member")
-  awards  Award[]              // One-to-many relationship with awards
-  chair   User    @relation(name: "Chair", fields: [chairId], references: [id])
-  chairId Int
-}
-
-model Award {
-  id            Int            @id @default(autoincrement())
-  name          String
-  committeeId   Int
-  committee     AwardCommittee @relation(fields: [committeeId], references: [id])
-  fields        AwardField[]
-  reviewers     Reviewer[]     // Many-to-many relationship with users for reviewers
-  reviewmetrics ReviewMetric[] // One-to-many relationship with reviewmetrics
-  applications  Application[]  // One-to-many relationship with applications
-}
-
-model Application {
-  id                Int                 @id @default(autoincrement())
-  awardId           Int
-  award             Award               @relation(fields: [awardId], references: [id])
-  userId            Int
-  user              User                @relation(fields: [userId], references: [id])
-  ApplicantResponse ApplicantResponse[]
-  ExtraReviewers    Reviewer[]          @relation(name: "ExtraReviewer")
-  Score             Score[]
-}
-
-model AwardField {
-  id                Int                 @id @default(autoincrement())
-  content           String
-  awardId           Int
-  award             Award               @relation(fields: [awardId], references: [id])
-  fieldtype         AnswerType
-  choices           Choice[]
-  ApplicantResponse ApplicantResponse[]
-}
-
-model Choice {
-  id      Int        @id @default(autoincrement())
-  content String
-  field   AwardField @relation(fields: [fieldId], references: [id])
-  fieldId Int
-}
-
-model ApplicantResponse {
-  id            Int         @id @default(autoincrement())
-  content       String
-  application   Application @relation(fields: [applicationId], references: [id])
-  applicationId Int
-  field         AwardField  @relation(fields: [fieldId], references: [id])
-  fieldId       Int
+model Applicant {
+    id Int @id @default(autoincrement())
+    name String
+    ieeeMembership String
+    grade String // Can maybe an enum
+    section String // Can maybe an enum
+    affiliation String
+    email String
+    password String // This will be the hashed password
+    phone String
+    joined DateTime
+    last_login DateTime
 }
 
 model Reviewer {
-  id           Int           @id @default(autoincrement())
-  userId       Int
-  user         User          @relation(fields: [userId], references: [id])
-  awards       Award[]         // Many-to-many relationship with awards
-  scores       Score[]         // One-to-many relationship with scores
-  applications Application[] @relation(name: "ExtraReviewer")
+    id Int @id @default(autoincrement())
+    name String
+    email String
+    password String
+    affiliation String
+    joined DateTime
+    last_login DateTime
 }
 
-model Score {
-  id             Int          @id @default(autoincrement())
-  value          Float
-  reviewmetric   ReviewMetric @relation(fields: [reviewmetricId], references: [id])
-  reviewmetricId Int
-  reviewer       Reviewer     @relation(fields: [reviewerId], references: [id])
-  reviewerId     Int
-  application    Application  @relation(fields: [applicationId], references: [id])
-  applicationId  Int
-
-  @@unique([reviewerId, applicationId, reviewmetricId])
+model AwardCommittee {
+    id Int @id @default(autoincrement())
+    name String
+    email String
+    password String
+    affiliation String
+    joined DateTime
+    last_login DateTime
 }
 
-model ReviewMetric {
-  id      Int     @id @default(autoincrement())
-  name    String
-  max     Float                // Maximum score for this reviewmetric
-  scores  Score[]              // One-to-many relationship with scores
-  award   Award   @relation(fields: [awardId], references: [id])
-  awardId Int
+model Admin {
+    id Int @id @default(autoincrement())
+    name String
+    email String
+    password String
+    joined DateTime
+    last_login DateTime
 }
 
-enum AnswerType {
-  TEXT
-  TEXTAREA
-  NUMBER
-  BOOLEAN
-  FILE
+model Award {
+    id Int @id @default(autoincrement())
+    name String
+    metric Json // Assessment Rubrics: Originality, Technical Content, Clarity of Presentation, Impact, Relevance of the topic to IEEE goals
+    questions Json
+    posted DateTime
+}
+
+model Application {
+    id Int @id @default(autoincrement())
+    awardId Int
+    applicantId Int
+    response Json // Answer to the questions asked for the specific award
+    submitted DateTime
+}
+
+model Assessment {
+    id Int @id @default(autoincrement())
+    applicationId Int
+    review Json // The actual score given by the reviewer
+    submitted DateTime
 }
