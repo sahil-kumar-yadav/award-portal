@@ -1,7 +1,5 @@
 <script>
-  import illustration from "../../../images/bg.png";
-  import award from "../../../images/award.png";
-  import logo from "../../../images/logo.jpeg";
+  import {base} from "$app/paths";
 
   // Component logic and state
   let username = "";
@@ -17,7 +15,7 @@
 </script>
 
 <div class="div">
-  <img class="img rounded-lg" src={illustration} alt="" />
+  <img class="img rounded-lg" src="{base}/bg.png" alt="" />
   <div class="grid grid-cols-2 md:grid-cols-2">
     <div class="flexstyle">
       <h6
@@ -30,7 +28,7 @@
       >
         Sign In to your <br /> account
       </h1>
-      <img class="awaimg" src={award} alt="" />
+      <img class="awaimg" src="{base}/award.png" alt="" />
     </div>
     <div style="margin-right: 20%;">
       <form
@@ -39,7 +37,7 @@
         on:submit={handleSubmit}
       >
         <div class="logodiv">
-          <img class="logo" src={logo} alt="" />
+          <img class="logo" src="{base}/logo.jpeg" alt="" />
         </div>
         <input
           style="width: 60%;"
