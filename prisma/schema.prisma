@@ -9,67 +9,91 @@ datasource db {
 }
 
 model Applicant {
-    id Int @id @default(autoincrement())
-    name String
+    id             Int           @id @default(autoincrement())
+    name           String
     ieeeMembership String
-    grade String // Can maybe an enum
-    section String // Can maybe an enum
-    affiliation String
-    email String
-    password String // This will be the hashed password
-    phone String
-    joined DateTime
-    last_login DateTime
+    grade          String // Can maybe an enum
+    section        String // Can maybe an enum
+    affiliation    String
+    email          String
+    password       String // This will be the hashed password
+    phone          String
+    joined         DateTime
+    last_login     DateTime
+    Application    Application[]
 }
 
 model Reviewer {
-    id Int @id @default(autoincrement())
-    name String
-    email String
-    password String
+    id          Int          @id @default(autoincrement())
+    name        String
+    email       String
+    password    String // This will be the hashed password
     affiliation String
-    joined DateTime
-    last_login DateTime
+    joined      DateTime
+    last_login  DateTime
+    reviews     Assessment[]
 }
 
 model AwardCommittee {
-    id Int @id @default(autoincrement())
-    name String
-    email String
-    password String
+    id      Int                    @id @default(autoincrement())
+    name    String
+    created DateTime
+    chairId Int?                   @unique
+    chair   AwardCommitteeMember?  @relation(name: "Chair", fields: [chairId], references: [id])
+    members AwardCommitteeMember[] @relation(name: "Member")
+    awards  Award[]
+}
+
+model AwardCommitteeMember {
+    id          Int             @id @default(autoincrement())
+    name        String
+    email       String
+    password    String
     affiliation String
-    joined DateTime
-    last_login DateTime
+    joined      DateTime
+    last_login  DateTime
+    committeeId Int
+    committee   AwardCommittee  @relation(name: "Member", fields: [committeeId], references: [id])
+    chairOf     AwardCommittee? @relation(name: "Chair")
 }
 
 model Admin {
-    id Int @id @default(autoincrement())
-    name String
-    email String
-    password String
-    joined DateTime
+    id         Int      @id @default(autoincrement())
+    name       String
+    email      String
+    password   String
+    joined     DateTime
     last_login DateTime
 }
 
 model Award {
-    id Int @id @default(autoincrement())
-    name String
-    metric Json // Assessment Rubrics: Originality, Technical Content, Clarity of Presentation, Impact, Relevance of the topic to IEEE goals
-    questions Json
-    posted DateTime
+    id           Int            @id @default(autoincrement())
+    name         String
+    metric       Json // Assessment Rubrics: Originality, Technical Content, Clarity of Presentation, Impact, Relevance of the topic to IEEE goals
+    questions    Json
+    posted       DateTime
+    committeeId  Int
+    committee    AwardCommittee @relation(fields: [committeeId], references: [id])
+    Applications Application[]
 }
 
 model Application {
-    id Int @id @default(autoincrement())
-    awardId Int
+    id          Int          @id @default(autoincrement())
+    awardId     Int
+    award       Award        @relation(fields: [awardId], references: [id])
     applicantId Int
-    response Json // Answer to the questions asked for the specific award
-    submitted DateTime
+    applicant   Applicant    @relation(fields: [applicantId], references: [id])
+    response    Json // Answer to the questions asked for the specific award
+    submitted   DateTime
+    Assessment  Assessment[]
 }
 
 model Assessment {
-    id Int @id @default(autoincrement())
+    id            Int         @id @default(autoincrement())
     applicationId Int
-    review Json // The actual score given by the reviewer
-    submitted DateTime
+    application   Application @relation(fields: [applicationId], references: [id])
+    reviewerId    Int
+    reviewer      Reviewer    @relation(fields: [reviewerId], references: [id])
+    review        Json // Assessment Rubrics: Originality, Technical Content, Clarity of Presentation, Impact, Relevance of the topic to IEEE goals
+    submitted     DateTime
 }
