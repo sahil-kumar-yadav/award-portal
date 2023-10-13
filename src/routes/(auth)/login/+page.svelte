@@ -16,8 +16,8 @@
 
 <div class="div">
   <img class="img rounded-lg" src="{base}/bg.png" alt="" />
-  <div class="grid grid-cols-2 md:grid-cols-2">
-    <div class="flexstyle">
+  <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+    <div class="flexstyle2">
       <h6
         class="mb-4 text-left text-1xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
       >
@@ -30,18 +30,14 @@
       </h1>
       <img class="awaimg" src="{base}/award.png" alt="" />
     </div>
-    <div style="margin-right: 20%;">
-      <form
-        class="flexstyle"
-        style="margin-left:0;align-items:flex-end"
-        on:submit={handleSubmit}
-      >
+    <div class="divfields" >
+      <form class="flexstyle" on:submit={handleSubmit}>
         <div class="logodiv">
           <img class="logo" src="{base}/logo.jpeg" alt="" />
         </div>
         <input
           style="width: 60%;"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           type="text"
           placeholder="Username"
           bind:value={username}
@@ -49,7 +45,7 @@
         />
         <input
           style="width: 60%;margin-top:3%;"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           type="password"
           placeholder="Password"
           bind:value={password}
@@ -81,6 +77,7 @@
     height: 100vh;
     width: auto;
     position: absolute;
+    z-index: -1;
   }
   .div {
     height: 95vh;
@@ -98,8 +95,36 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin-left: 20%;
+    margin-right: 20%;
+    align-items: flex-end;
   }
+  .flexstyle2 {
+    width: 60%;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .divfields{
+    margin-right: 20%;
+  }
+  @media screen and (max-width: 992px) {
+    .flexstyle2 {
+      display: none;
+    }
+    .flexstyle {
+      margin-right: 0px;
+      z-index: 1000;
+      align-items: center;
+      width: 100%;
+    }
+    .divfields{
+    margin-right: 0;
+  }
+  }
+
   .color {
     line-height: 1.3;
   }
