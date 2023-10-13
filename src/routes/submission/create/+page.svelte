@@ -1,7 +1,4 @@
 <script>
-  
-  import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
-  import logo from "../../images/logo.jpeg"
 
     let awardname = 'DemoAward'; 
     let awardid = '1';   
@@ -52,26 +49,7 @@
 
 <!-- NavBar -->
 
-<Navbar let:hidden let:toggle>
-  <NavBrand href="/">
-    <img
-      src={logo}
-      class="mr-3 h-6 sm:h-9"
-      alt="IEEE Logo"
-    />
-    <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-      IEEE Bombay Section
-    </span>
-  </NavBrand>
-  <NavHamburger on:click={toggle} />
-  <NavUl {hidden}>
-    <NavLi href="/" active={true}>Home</NavLi>
-    <NavLi href="/">Apply for Award</NavLi>
-    <NavLi href="/">Your Applications</NavLi>
-    <NavLi href="/">Welcome</NavLi>
-    <NavLi href="/">Logout</NavLi>
-  </NavUl>
-</Navbar>
+
 
 
 <!-- Award Form -->
