@@ -1,7 +1,4 @@
 <style>
-    body{
-        background-color: grey;
-    }
     td,th{
         border: 1px solid lightgray;
         
@@ -178,10 +175,4 @@
     </div>
     <p class="text-blue-800 p-4"><b>Reviewer should have no conflict of interest in reviewing applications assigned.</b></p>
 </div>
-
-<footer class="bg-blue-800  shadow  dark:bg-gray-800">
-    <div class="w-full mx-auto max-w-screen-xl p-4  ">
-      <h1 class=" text-center text-white">Developed by Prof. Sumit P. Makwana, Digital Content Chair, IEEE Gujarat Section</h1>
-    </div>
-</footer>
 </div>
