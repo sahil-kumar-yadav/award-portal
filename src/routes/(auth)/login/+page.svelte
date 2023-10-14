@@ -1,6 +1,13 @@
 <script>
-  import {base} from "$app/paths";
-
+  import { base } from "$app/paths";
+  import { Select, Label, Input } from "flowbite-svelte";
+  let selected;
+  let countries = [
+    { value: "applicant", name: "Applicant" },
+    { value: "reviewer", name: "Reviewer" },
+    { value: "award-committee", name: "Award Committee" },
+    { value: "admin", name: "Admin" },
+  ];
   // Component logic and state
   let username = "";
   let password = "";
@@ -30,27 +37,33 @@
       </h1>
       <img class="awaimg" src="{base}/award.png" alt="" />
     </div>
-    <div class="divfields" >
+    <div class="divfields">
       <form class="flexstyle" on:submit={handleSubmit}>
         <div class="logodiv">
           <img class="logo" src="{base}/logo.jpeg" alt="" />
         </div>
-        <input
-          style="width: 60%;"
-          class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <Select
+          placeholder="Select your role"
+          style="width:60%"
+          class="mt-2 text-gray-500"
+          items={countries}
+          bind:value={selected}
+        />
+        <Input
           type="text"
+          style="width: 60%;margin-top:3%;"
           placeholder="Username"
           bind:value={username}
           required
         />
-        <input
+        <Input
           style="width: 60%;margin-top:3%;"
-          class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           type="password"
           placeholder="Password"
           bind:value={password}
           required
         />
+        
         <button
           type="button"
           style="border-radius: 50px;margin-top:3%; width:60%"
@@ -80,9 +93,10 @@
     z-index: -1;
   }
   .div {
-    height: 95vh;
+    height: 88vh;
     position: relative;
     overflow: hidden;
+    margin-top: -2%;
   }
   .awaimg {
     height: 40vh;
@@ -107,7 +121,7 @@
     align-items: center;
     flex-direction: column;
   }
-  .divfields{
+  .divfields {
     margin-right: 20%;
   }
   @media screen and (max-width: 992px) {
@@ -122,9 +136,9 @@
       justify-content: flex-start;
       padding-top: 15%;
     }
-    .divfields{
-    margin-right: 0;
-  }
+    .divfields {
+      margin-right: 0;
+    }
   }
 
   .color {
