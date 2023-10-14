@@ -1,5 +1,4 @@
 <script>
-  import "../app.css";
   import {
     Navbar,
     NavBrand,
@@ -16,8 +15,7 @@
     Checkbox,
     Modal,
   } from "flowbite-svelte";
-  import logo from "../images/bslogo.png";
-  import add from "../images/add.svg";
+  import { base } from "$app/paths";
   import emailjs from "@emailjs/browser";
 
   let today = new Date().toISOString().split("T")[0];
@@ -112,23 +110,6 @@
 </script>
 
 <div class="relative px-8">
-  <Navbar class="px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b">
-    <NavBrand href="/">
-      <img
-        src={logo}
-        class="mr-3 h-[70px] sm:h-[90px]"
-        alt="Bombay Section Logo"
-      />
-      <span
-        class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
-        >IEEE Bombay Section</span
-      >
-    </NavBrand>
-    <NavHamburger />
-    <NavUl>
-      <NavLi href="/" active={true}>. . DEMO NAVBAR . .</NavLi>
-    </NavUl>
-  </Navbar>
   <div class="pt-[100px]">
     <div>
       <div id="form_heading" class="flex justify-center">
@@ -144,8 +125,7 @@
                 id="committee_name"
                 placeholder="Demo Committee"
                 bind:value={committee_name}
-                required
-              />
+                required />
             </div>
             <div>
               <Label for="start_date" class="mb-2">Committee Term</Label>
@@ -155,15 +135,13 @@
                   id="start_date"
                   min={today}
                   bind:value={committee_sd}
-                  required
-                />
+                  required />
                 <Input
                   type="date"
                   id="end_date"
                   min={today}
                   bind:value={committee_ed}
-                  required
-                />
+                  required />
               </div>
             </div>
             <div>
@@ -173,8 +151,7 @@
                 id="chair"
                 placeholder="Aryan Shinde"
                 bind:value={committee_chair}
-                required
-              />
+                required />
             </div>
             <div>
               <Label for="chair_email" class="mb-2">Chair Email</Label>
@@ -183,8 +160,7 @@
                 id="chair_email"
                 placeholder="shindearyan179@ieee.org"
                 bind:value={committee_chair_email}
-                required
-              />
+                required />
             </div>
             <div>
               <Label for="phone" class="mb-2">Chair Phone Number</Label>
@@ -193,8 +169,7 @@
                 id="phone"
                 placeholder="+91 8097296453"
                 bind:value={committee_chair_phone}
-                required
-              />
+                required />
             </div>
           </div>
           <div class="mb-6">
@@ -211,12 +186,10 @@
               bind:open={formModal}
               size="xs"
               autoclose={false}
-              class="w-full"
-            >
+              class="w-full">
               <form class="flex flex-col space-y-6" action="#">
                 <h3
-                  class="mb-4 text-xl font-medium text-gray-900 dark:text-white"
-                >
+                  class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                   Add a member to committee
                 </h3>
                 <Label class="space-y-2">
@@ -226,8 +199,7 @@
                     name="name"
                     placeholder="Aryan"
                     required
-                    bind:value={newMemberName}
-                  />
+                    bind:value={newMemberName} />
                 </Label>
                 <Label class="space-y-2">
                   <span>Member Email</span>
@@ -236,14 +208,12 @@
                     name="email"
                     placeholder="shindearyan179@ieee.org"
                     bind:value={newMemberEmail}
-                    required
-                  />
+                    required />
                 </Label>
                 <Button
                   type="submit"
                   class="w-full1"
-                  on:click={(e) => addMember(e)}>Add</Button
-                >
+                  on:click={(e) => addMember(e)}>Add</Button>
               </form>
             </Modal>
             <ul class="flex align-middle">
@@ -256,16 +226,14 @@
           </div>
           <div class="mb-6">
             <Label for="confirm_password" class="mb-2"
-              >Committee Description</Label
-            >
+              >Committee Description</Label>
             <Textarea
               id="description"
               name="description"
               rows="4"
               placeholder="Add the committee description . . ."
               bind:value={committee_description}
-              required
-            />
+              required />
           </div>
           <Checkbox class="mb-6 space-x-1" required checked disabled>
             Share the details with committee members and chair.
