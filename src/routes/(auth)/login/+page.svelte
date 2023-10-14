@@ -35,8 +35,31 @@
         <div class="logodiv">
           <img class="logo" src="{base}/logo.jpeg" alt="" />
         </div>
+        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
+        <button id="dropdown-button" data-dropdown-toggle="dropdown" 
+        style="width: 60%;display:flex; justify-content:space-between;" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">
+          All categories 
+          <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+  </svg></button>
+        <div id="dropdown"  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-90 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+            <li>
+                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Applicant</button>
+            </li>
+            <li>
+                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reviewer</button>
+            </li>
+            <li>
+                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Award Committee</button>
+            </li>
+            <li>
+                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin</button>
+            </li>
+            </ul>
+        </div>
         <input
-          style="width: 60%;"
+          style="width: 60%;margin-top:3%;"
           class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           type="text"
           placeholder="Username"
@@ -80,9 +103,10 @@
     z-index: -1;
   }
   .div {
-    height: 95vh;
+    height: 88vh;
     position: relative;
     overflow: hidden;
+    margin-top: -2%;
   }
   .awaimg {
     height: 40vh;
