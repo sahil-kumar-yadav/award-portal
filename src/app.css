@@ -4,12 +4,9 @@
 
 h1 {
   font-size: 2.4rem;
-  font-family: "Osiris";
 }
 
 @font-face {
-  font-family: "Osiris";
-  src: url("../src/fonts/osiris/Osiris.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
