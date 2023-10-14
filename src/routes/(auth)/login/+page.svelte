@@ -101,7 +101,7 @@
     align-items: flex-end;
   }
   .flexstyle2 {
-    width: 60%;
+    width: 100%;
     height: 100vh;
     z-index: 100;
     display: flex;
@@ -121,6 +121,8 @@
       z-index: 1000;
       align-items: center;
       width: 100%;
+      justify-content: flex-start;
+      padding-top: 15%;
     }
     .divfields{
     margin-right: 0;
