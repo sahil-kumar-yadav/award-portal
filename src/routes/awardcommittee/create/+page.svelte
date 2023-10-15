@@ -109,8 +109,8 @@
   };
 </script>
 
-<div class="relative px-8">
-  <div class="pt-[100px]">
+<div class="relative px-6">
+  <div class="pt-[50px]">
     <div>
       <div id="form_heading" class="flex justify-center">
         <h1>Award Committee Form</h1>
@@ -187,7 +187,7 @@
               size="xs"
               autoclose={false}
               class="w-full">
-              <form class="flex flex-col space-y-6" action="#">
+              <form class="flex flex-col space-y-6" on:submit={addMember}>
                 <h3
                   class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                   Add a member to committee
@@ -212,8 +212,10 @@
                 </Label>
                 <Button
                   type="submit"
-                  class="w-full1"
-                  on:click={(e) => addMember(e)}>Add</Button>
+                  color="blue"
+                  class="w-full1">
+                  Add
+                </Button>
               </form>
             </Modal>
             <ul class="flex align-middle">

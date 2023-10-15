@@ -1,6 +1,7 @@
 <script>
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
   import {base} from "$app/paths";
+  import "../app.postcss"
 </script>
 <Navbar let:hidden let:toggle>
   <NavBrand href="/">
