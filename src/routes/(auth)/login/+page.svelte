@@ -1,6 +1,7 @@
 <script>
   import { base } from "$app/paths";
-  import { Select, Label, Input } from "flowbite-svelte";
+  import { Select, Input } from "flowbite-svelte";
+
   let selected;
   let countries = [
     { value: "applicant", name: "Applicant" },
@@ -25,15 +26,16 @@
   <img class="img rounded-lg" src="{base}/bg.png" alt="" />
   <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
     <div class="flexstyle2">
-      <h6
-        class="mb-4 text-left text-1xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
-      >
-        Welcome, Back!
-      </h6>
       <h1
         class="color text-blue-700 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
       >
-        Sign In to your <br /> account
+        <h6
+          style="font-size: 16px;"
+          class="mb-4 text-left text-1xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        >
+          Welcome, Back!
+        </h6>
+        Sign In to your<br /> account
       </h1>
       <img class="awaimg" src="{base}/award.png" alt="" />
     </div>
@@ -63,7 +65,11 @@
           bind:value={password}
           required
         />
-        
+        <a
+          href="/reset"
+          style=" text-decoration-line: underline; font-size:12px;margin-top:2%"
+          class="text-gray-400">Forgot password?</a
+        >
         <button
           type="button"
           style="border-radius: 50px;margin-top:3%; width:60%"
@@ -76,8 +82,7 @@
           >
             If you don’t an account you can <strong
               style="color: #4461F2; text-decoration-line: underline"
-              >SignUp here!</strong
-            >
+              >SignUp here!</strong>
           </p>
         </div>
       </form>
