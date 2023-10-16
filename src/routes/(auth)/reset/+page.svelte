@@ -1,1 +1,1 @@
-// reset p
+// set new password

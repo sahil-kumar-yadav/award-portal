@@ -3,7 +3,7 @@
   import { Select, Input } from "flowbite-svelte";
 
   let selected;
-  let countries = [
+  let userTypes = [
     { value: "applicant", name: "Applicant" },
     { value: "reviewer", name: "Reviewer" },
     { value: "award-committee", name: "Award Committee" },
@@ -27,7 +27,7 @@
   <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
     <div class="flexstyle2">
       <h1
-        class="color text-blue-700 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        class="color mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
       >
         <h6
           style="font-size: 16px;"
@@ -48,7 +48,7 @@
           placeholder="Select your role"
           style="width:60%"
           class="mt-2 text-gray-500"
-          items={countries}
+          items={userTypes}
           bind:value={selected}
         />
         <Input
