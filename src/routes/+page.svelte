@@ -3,6 +3,7 @@
   <title>Award Portal</title>
 </svelte:head>
 
+
 <div class="h1">
   <h1>Welcome to Award Portal</h1>
 </div>
@@ -12,6 +13,7 @@
   <a href="/signup">Signup</a>
   <a href="/awardcommittee/create">Create Award Committee</a>
   <a href="/submission/create">Submission Form</a>
+  <a href="/ReviewerList" ><b> Reviewers List</b></a>
 
   <p>Quick Links:</p>
 
@@ -26,6 +28,7 @@
   <a href="/awardcommittee/newAward">New Award</a>
   <a href="/awardcommittee">Award List</a>
   <a href="/awardcommittee/1">Award Details</a>
+  
   <br />
 </div>
 
