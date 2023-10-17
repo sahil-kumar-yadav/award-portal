@@ -1,1 +1,1 @@
-<!-- // awards committee homepage -->
+// awards committee homepage
