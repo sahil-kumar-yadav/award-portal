@@ -14,7 +14,7 @@
         <option value="">Select an Award</option>
         <option value="Scholarship A">Scholarship A</option>
         <option value="Scholarship B">Scholarship B</option>
-        <!-- Add more options as needed -->
+        <!-- We can Add more options as needed -->
       </select>
     </div>
 
@@ -34,7 +34,7 @@
         <option value="">Select a Committee</option>
         <option value="Committee A">Committee A</option>
         <option value="Committee B">Committee B</option>
-        <!-- Add more options as needed -->
+        <!-- We can Add more options as needed -->
       </select>
     </div>
 
@@ -140,7 +140,7 @@
   function handleSubmit(event) {
     event.preventDefault();
 
-    // Now you can access the form data using these variables and perform further actions.
+    // We can access the form data using these variables and perform further actions.
     console.log({
       awardName,
       organizingCommittee,
